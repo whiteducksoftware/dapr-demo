@@ -1,0 +1,29 @@
+{
+  "name": "template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "none",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whiteducksoftware/template.git"
+  },
+  "author": "whiteducksoftware",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whiteducksoftware/template/issues"
+  },
+  "homepage": "https://github.com/whiteducksoftware/template#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "husky": "^4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
