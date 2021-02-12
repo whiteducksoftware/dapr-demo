@@ -18,3 +18,68 @@ The demo consists of three applications.
 - [Dapr](https://dapr.io/)
 
 The applications also rely on preconfigured dapr components (e. g. a state configuration with the name `statestore` and a publish & subscribe configuration with the name `pubsub`) which reflects the default configuration that is provided from the dapr installer.
+
+## Usage
+
+### Start the NotificationService
+
+First, you will have to **install the necessary npm packages**:
+
+```bash
+npm install
+```
+
+If you are on Windows or if you have PowerShell Core installed, you can use the `run.ps1` to start the application:
+
+```powershell
+cd ./services/notificationservice
+./run.ps1
+```
+
+Otherwise, start the application using the dapr cli:
+
+```bash
+dapr run \
+    --app-id demo-dapr-notificationservice \
+    --app-port 5005 \
+    ts-node app.ts
+```
+
+### Start the MessageService
+
+If you are on Windows or if you have PowerShell Core installed, you can use the `run.ps1` to start the application:
+
+```powershell
+cd ./services/messageservice
+./run.ps1
+```
+
+Otherwise, start the application using the dapr cli:
+
+```bash
+dapr run \
+    --app-id demo-dapr-messageservice \
+    --app-port 5002 \
+    --app-protocol grpc \
+    dotnet run
+```
+
+### Start the Client
+
+If you are on Windows or if you have PowerShell Core installed, you can use the `run.ps1` to start the application:
+
+```powershell
+cd ./services/client
+./run.ps1
+```
+
+Otherwise, start the application using the dapr cli:
+
+```bash
+dapr run \
+    --app-id demo-dapr-client \
+    go run main.go
+```
+
+If everything was setup up correctly, you should see the following output:
+![output](./assets/output.png)
