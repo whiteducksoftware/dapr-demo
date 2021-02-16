@@ -1,6 +1,6 @@
 # Dapr demo
 
-This repository contains a simple demo to show how [dapr](https://dapr.io/) can help implementing a polyglott microservice based architecture.
+This repository contains a simple demo to show how [dapr](https://dapr.io/) can help to implement a polyglot microservice-based architecture.
 
 The demo consists of three applications.
 
