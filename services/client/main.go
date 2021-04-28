@@ -19,20 +19,20 @@ func main() {
 
 	nico := &dapr.DataContent{
 		ContentType: "application/json",
-		Data:        []byte(`{ "Id": 1, "Name": "Fred Duck" }`),
+		Data:        []byte(`{ "Id": 1, "Name": "Nico" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "createuser", "post", nico)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", nico)
 
 	martin := &dapr.DataContent{
 		ContentType: "application/json",
-		Data:        []byte(`{ "Id": 2, "Name": "John Doe" }`),
+		Data:        []byte(`{ "Id": 2, "Name": "Martin" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "createuser", "post", martin)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", martin)
 
 	message := &dapr.DataContent{
 		ContentType: "application/json",
 		Data:        []byte(`{ "FromUser": 2, "ToUser": 1, "Text": "Quak, quak." }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "sendmessage", "post", message)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "sendmessage", "post", message)
 
 }
