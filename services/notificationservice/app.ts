@@ -8,8 +8,8 @@ const port = 5005;
 app.get("/dapr/subscribe", (req, res) => {
   res.json([
     {
-      pubsubname: "pubsub",
-      topic: "message",
+      pubsubname: "dapr-demo-pubsub",
+      topic: "dapr-demo-messages",
       route: "messageendpoint",
     },
   ]);
