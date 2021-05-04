@@ -1,0 +1,17 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: dapr-demo-state-store
+  namespace: default
+spec:
+  type: state.redis
+  version: v1
+  metadata:
+    - name: redisHost
+      secretKeyRef:
+        name: redisHost
+    - name: redisPassword
+      secretKeyRef:
+        name: redisPassword
+auth:
+  secretStore: dapr-demo-secrets-store

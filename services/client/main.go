@@ -17,22 +17,22 @@ func main() {
 	}
 	defer client.Close()
 
-	nico := &dapr.DataContent{
+	fredDuck := &dapr.DataContent{
 		ContentType: "application/json",
 		Data:        []byte(`{ "Id": 1, "Name": "Fred Duck" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "createuser", "post", nico)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", fredDuck)
 
-	martin := &dapr.DataContent{
+	johnDoe := &dapr.DataContent{
 		ContentType: "application/json",
 		Data:        []byte(`{ "Id": 2, "Name": "John Doe" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "createuser", "post", martin)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", johnDoe)
 
 	message := &dapr.DataContent{
 		ContentType: "application/json",
 		Data:        []byte(`{ "FromUser": 2, "ToUser": 1, "Text": "Quak, quak." }`),
 	}
-	client.InvokeMethodWithContent(ctx, "demo-dapr-messageservice", "sendmessage", "post", message)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "sendmessage", "post", message)
 
 }

@@ -17,7 +17,7 @@ namespace Demo.Dapr.MessageService
     public class MessageService : AppCallback.AppCallbackBase
     {
         readonly JsonSerializerOptions jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-        public const string StoreName = "statestore";
+        public const string StoreName = "dapr-demo-state-store";
 
         private readonly DaprClient _daprClient;
 
@@ -59,7 +59,7 @@ namespace Demo.Dapr.MessageService
             var toUser = await _daprClient.GetStateAsync<string>(StoreName, message.ToUser.ToString());
 
             var eventData = new { Text = $"Message from {fromUser} to {toUser}: '{message.Text}'" };
-            await _daprClient.PublishEventAsync("pubsub", "message", eventData);
+            await _daprClient.PublishEventAsync("dapr-demo-pubsub", "dapr-demo-messages", eventData);
         }
 
         public override Task<ListTopicSubscriptionsResponse> ListTopicSubscriptions(Empty request, ServerCallContext context)

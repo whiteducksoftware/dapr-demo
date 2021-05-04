@@ -1,16 +1,15 @@
 import express from "express";
-import bodyParser from "body-parser";
 
 const app = express();
-app.use(bodyParser.json({ type: "application/*+json" }));
+app.use(express.json({ type: "application/*+json" }));
 
 const port = 5005;
 
 app.get("/dapr/subscribe", (req, res) => {
   res.json([
     {
-      pubsubname: "pubsub",
-      topic: "message",
+      pubsubname: "dapr-demo-pubsub",
+      topic: "dapr-demo-messages",
       route: "messageendpoint",
     },
   ]);

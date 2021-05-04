@@ -1,0 +1,23 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: dapr-demo-state-store
+  namespace: default
+spec:
+  type: state.azure.cosmosdb
+  version: v1
+  metadata:
+    - name: url
+      secretKeyRef:
+        name: cosmosDb:url
+    - name: masterKey
+      secretKeyRef:
+        name: cosmosDb:masterKey
+    - name: database
+      secretKeyRef:
+        name: cosmosDb:database
+    - name: collection
+      secretKeyRef:
+        name: cosmosDb:collection
+auth:
+  secretStore: dapr-demo-secrets-store

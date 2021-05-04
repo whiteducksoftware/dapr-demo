@@ -29,6 +29,12 @@ First, you will have to **install the necessary npm packages**:
 npm install
 ```
 
+Additionally, you will have to install ``ts-node`` globally to run TypeScript files without transpiling them to JavaScript first:
+
+```bash
+npm install -g ts-node
+```
+
 If you are on Windows or if you have PowerShell Core installed, you can use the `run.ps1` to start the application:
 
 ```powershell
