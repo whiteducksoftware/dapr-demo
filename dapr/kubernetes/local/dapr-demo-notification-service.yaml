@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-demo-notification-service
+  labels:
+    app: dapr-demo-notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-demo-notification-service
+  template:
+    metadata:
+      labels:
+        app: dapr-demo-notification-service
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-demo-notification-service"
+        dapr.io/app-port: "5005"
+        dapr.io/config: "dapr-demo-config"
+    spec:
+      containers:
+        - name: dapr-demo-notification-service
+          image: ghcr.io/m-voit/dapr-demo-notification-service:latest
+          ports:
+            - containerPort: 5005
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred

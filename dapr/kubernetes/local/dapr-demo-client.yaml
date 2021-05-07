@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-demo-client
+  labels:
+    app: dapr-demo-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-demo-client
+  template:
+    metadata:
+      labels:
+        app: dapr-demo-client
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-demo-client"
+        dapr.io/port: "50001"
+        dapr.io/config: "dapr-demo-config"
+    spec:
+      containers:
+        - name: dapr-demo-client
+          image: ghcr.io/m-voit/dapr-demo-client:latest
+          ports:
+            - containerPort: 50001
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
