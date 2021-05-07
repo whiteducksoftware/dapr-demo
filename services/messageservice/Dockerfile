@@ -1,10 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0.102-1-buster-slim AS build-env
-
 WORKDIR /app
-
 ADD *.csproj .
 RUN dotnet restore
-
 ADD . .
 RUN dotnet publish \
   -c Release \
