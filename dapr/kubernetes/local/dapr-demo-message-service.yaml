@@ -16,13 +16,14 @@ spec:
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "dapr-demo-message-service"
+        dapr.io/log-as-json: "true"
         dapr.io/app-protocol: "grpc"
         dapr.io/app-port: "5002"
         dapr.io/config: "dapr-demo-config"
     spec:
       containers:
         - name: dapr-demo-message-service
-          image: ghcr.io/m-voit/dapr-demo-message-service:latest
+          image: ghcr.io/whiteducksoftware/dapr-demo-message-service:latest
           ports:
             - containerPort: 5002
           imagePullPolicy: Always
