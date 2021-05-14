@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-demo-message-service
+  labels:
+    app: dapr-demo-message-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-demo-message-service
+  template:
+    metadata:
+      labels:
+        app: dapr-demo-message-service
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-demo-message-service"
+        dapr.io/log-as-json: "true"
+        dapr.io/app-protocol: "grpc"
+        dapr.io/app-port: "5002"
+        dapr.io/config: "dapr-demo-config"
+    spec:
+      containers:
+        - name: dapr-demo-message-service
+          image: ghcr.io/whiteducksoftware/dapr-demo-message-service:latest
+          ports:
+            - containerPort: 5002
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
