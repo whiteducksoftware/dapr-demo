@@ -20,8 +20,8 @@ data:
       logging:
         loglevel: debug
       azuremonitor:
-        endpoint: "https://westeurope-2.in.applicationinsights.azure.com/"
-        instrumentation_key: "b8fd3887-7e4c-47e8-943f-8dfdcbfc3059"
+        endpoint: "https://dc.services.visualstudio.com/v2/track"
+        instrumentation_key: "<REPLACE-WITH-INSTRUMENTATION-KEY>"
         # maxbatchsize is the maximum number of items that can be
         # queued before calling to the configured endpoint
         maxbatchsize: 100
