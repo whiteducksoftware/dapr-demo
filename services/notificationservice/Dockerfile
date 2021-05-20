@@ -6,6 +6,8 @@ RUN npm install
 
 # Run
 FROM node:14-alpine
+# Connect the container image with the github repository
+LABEL org.opencontainers.image.source https://github.com/whiteducksoftware/dapr-demo
 RUN adduser \
   --disabled-password \
   --home /app \
