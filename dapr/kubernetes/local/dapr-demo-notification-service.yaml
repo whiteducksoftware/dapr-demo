@@ -22,9 +22,7 @@ spec:
     spec:
       containers:
         - name: dapr-demo-notification-service
-          image: ghcr.io/whiteducksoftware/dapr-demo-notification-service:latest
+          image: ghcr.io/whiteducksoftware/dapr-demo/notification-service:latest
           ports:
             - containerPort: 5005
           imagePullPolicy: Always
-      imagePullSecrets:
-        - name: regcred
