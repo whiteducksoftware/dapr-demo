@@ -22,9 +22,7 @@ spec:
     spec:
       containers:
         - name: dapr-demo-client
-          image: ghcr.io/whiteducksoftware/dapr-demo-client:latest
+          image: ghcr.io/whiteducksoftware/dapr-demo/client:latest
           ports:
             - containerPort: 50001
           imagePullPolicy: Always
-      imagePullSecrets:
-        - name: regcred
