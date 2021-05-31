@@ -86,15 +86,18 @@ kubectl apply -f ./dapr/kubernetes/local
 
 The Dapr components definitions for running the demo in self-hosted mode are located in the `/dapr/self-hosted/` directory.
 
-### Prerequisites for self-hosted deployment
+### Prerequisites for self-hosted deployment using cloud components
+
+To run the Dapr demo in self-hosted mode using cloud components, you will need the following prerequisites:
 
 - [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
 - [Go](https://golang.org/)
 - [Node.js with NPM](https://nodejs.org/en/)
 - [Dapr](https://dapr.io/)
+- Azure CosmosDB ([Dapr Docs for Azure CosmosDB setup](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-azure-cosmosdb/))
+- Azure Service Bus ([Dapr Docs for Azure Service Bus setup](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-azure-servicebus/))
 
 Rename the provided `dapr-demo-secrets-store.json.example` file to `dapr-demo-secrets-store.json` and fill in the parameters required to connect to the components.
-The parameters are different for cloud and local deployment, because different third party components are used.
 
 Additionally, you will have to **install the necessary npm packages** of the notificationservice:
 
@@ -165,6 +168,25 @@ dapr run `
     --app-id dapr-demo-client `
     --components-path ../../dapr/self-hosted/cloud `
     go run main.go
+```
+
+### Prerequisites for self-hosted deployment using local components
+
+To run the Dapr demo in self-hosted mode using local components, you need the following prerequisites:
+
+- [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [Go](https://golang.org/)
+- [Node.js with NPM](https://nodejs.org/en/)
+- [Dapr](https://dapr.io/)
+- Redis (Automatically installed with Dapr)
+
+Rename the provided `dapr-demo-secrets-store.json.example` file to `dapr-demo-secrets-store.json` and fill in the parameters required to connect to the components.
+
+Additionally, you will have to **install the necessary npm packages** of the notificationservice:
+
+```powershell
+cd ./services/notificationservice
+npm install
 ```
 
 ### Run in self-hosted mode using local components
