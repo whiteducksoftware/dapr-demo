@@ -1,6 +1,6 @@
 # Dapr demo
 
-This repository contains a simple demo that shows how [Dapr](https://dapr.io/) *simplifies the implementation of polyglot microservices* and how Dapr makes it possible *to switch between different deployment environments* without changing the application code.
+This repository contains a simple demo that shows how [Dapr](https://dapr.io/) _simplifies the implementation of polyglot microservices_ and how Dapr makes it possible _to switch between different deployment environments_ without changing the application code.
 
 The demo consists of three applications.
 
@@ -12,15 +12,15 @@ The demo consists of three applications.
 
 ## Changing the deployment environment with Dapr
 
-The demo shows how Dapr enables polyglot microservices to be run in different environments (e.g. local and cloud) without changing a line of application code.
-For this purpose the demo uses different third party components for each environment.
+The demo shows how Dapr enables polyglot microservices to run in different environments (e.g. local and cloud) without changing a line of application code.
+For this purpose, the demo uses different third-party components for each environment.
 
-Third party components used in local environment:
+Third-party components used in local environments:
 
 - Redis (State store and message broker)
 - Zipkin (Distributed Tracing)
 
-Third party components used in cloud environment:
+Third-party components used in cloud environments:
 
 - Azure CosmosDB (State store)
 - Azure Service Bus (Message broker)
@@ -32,7 +32,7 @@ The Dapr components definitions for running the demo on Kubernetes are located i
 
 ### Run on AKS using Azure services
 
-Follow these steps to run the Dapr demo on Azure Kubernetes Service (AKS) using Azure services as third party components.
+Follow these steps to run the Dapr demo on Azure Kubernetes Service (AKS) using Azure services as third-party components.
 
 #### Prerequisites for Kubernetes deployment on Azure Cloud
 
@@ -44,18 +44,18 @@ To run the Dapr demo on Kubernetes in Azure, you need running instances of the f
 - Azure Application Insights ([Dapr Docs on using Application Insights with OpenTelemetry Collector](https://docs.dapr.io/operations/monitoring/tracing/open-telemetry-collector-appinsights/))
 - kubectl
 
-Additionally, you will need to create kubernetes secrets to connect to the azure services.
+Additionally, you will need to create kubernetes secrets to connect to the Azure services.
 Set the required parameters as value.
 Refer to the Dapr Docs for details on connection parameters.
 
-- Create a kubernetes secret named ``cosmos-db-secrets`` with the following keys:
+- Create a kubernetes secret named `cosmos-db-secrets` with the following keys:
   - url
   - masterKey
   - database
   - collection
-- Create a kubernetes secret named ``servicebus-secrets`` with the following key:
+- Create a kubernetes secret named `servicebus-secrets` with the following key:
   - connectionString
-- Configure the ``instrumentation_key`` in the `dapr-demo-application-insights.yaml` file by replacing ``<REPLACE-WITH-INSTRUMENTATION-KEY>`` with your Azure Application Insights instrumentation key. **Be careful to not accidentally commit your instrumentation key!**
+- Configure the `instrumentation_key` in the `dapr-demo-application-insights.yaml` file by replacing `<REPLACE-WITH-INSTRUMENTATION-KEY>` with your Azure Application Insights instrumentation key. **Be careful to not accidentally commit your instrumentation key!**
 
 #### Deployment on AKS
 
@@ -68,7 +68,7 @@ kubectl apply -f ./dapr/kubernetes/cloud
 
 ### Run on local Kubernetes cluster using local components
 
-Follow these steps to run the Dapr demo on a local Kubernetes cluster using local third party components.
+Follow these steps to run the Dapr demo on a local Kubernetes cluster using local third-party components.
 
 #### Prerequisites for local Kubernetes deployment
 
@@ -76,7 +76,7 @@ Follow these steps to run the Dapr demo on a local Kubernetes cluster using loca
 - Redis ([Dapr Docs instructions for installing Redis in Kubernetes](https://docs.dapr.io/getting-started/configure-state-pubsub/#create-a-redis-store))
 - kubectl
 
-#### Deplyoment on local Kubernetes cluster
+#### Deployment on local Kubernetes cluster
 
 ```bash
 kubectl apply -f ./dapr/kubernetes/local
@@ -108,9 +108,9 @@ npm install
 
 ### Run in self-hosted mode using cloud components
 
-Start the services in the following order and wait until you see `You're up and running! Both Dapr and your app logs will appear here.` as output before starting the next service.
+Start the services in the following order and wait until you see `You're up and running! Both Dapr and your app logs will appear here.` as an output before starting the next service.
 
-#### Start the notificationservice using cloud components
+#### Start the Notification Service using cloud components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-notification-service.ps1` to start the application:
 
@@ -119,7 +119,7 @@ cd ./dapr/self-hosted/cloud
 ./run-notification-service.ps1
 ```
 
-Otherwise, start the application using the dapr cli:
+Otherwise, start the application using the dapr CLI:
 
 ```bash
 cd ./services/notificationservice
@@ -130,7 +130,7 @@ dapr run `
   npm run start
 ```
 
-#### Start the messageservice using cloud components
+#### Start the Message Service using cloud components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-message-service.ps1` to start the application:
 
@@ -151,7 +151,7 @@ dapr run `
     dotnet run
 ```
 
-#### Start the client using cloud components
+#### Start the Client using cloud components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-client.ps1` to start the application:
 
@@ -160,7 +160,7 @@ cd ./dapr/self-hosted/cloud
 ./run-client.ps1
 ```
 
-Otherwise, start the application using the dapr cli:
+Otherwise, start the application using the dapr CLI:
 
 ```bash
 cd ./services/client
@@ -191,9 +191,9 @@ npm install
 
 ### Run in self-hosted mode using local components
 
-Start the services in the following order and wait until you see `You're up and running! Both Dapr and your app logs will appear here.` as output before starting the next service.
+Start the services in the following order and wait until you see `You're up and running! Both Dapr and your app logs will appear here.` as an output before starting the next service.
 
-#### Start the notificationservice using local components
+#### Start the Notification Service using local components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-notification-service.ps1` to start the application:
 
@@ -213,7 +213,7 @@ dapr run `
   npm run start
 ```
 
-#### Start the messageservice using local components
+#### Start the Message Service using local components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-message-service.ps1` to start the application:
 
@@ -222,7 +222,7 @@ cd ./dapr/self-hosted/local
 ./run-message-service.ps1
 ```
 
-Otherwise, start the application using the dapr cli:
+Otherwise, start the application using the dapr CLI:
 
 ```bash
 cd ./services/messageservice
@@ -234,7 +234,7 @@ dapr run `
     dotnet run
 ```
 
-#### Start the client using local components
+#### Start the Client using local components
 
 If you are on Windows or if you have PowerShell Core installed, you can use the `run-client.ps1` to start the application:
 
@@ -243,7 +243,7 @@ cd ./dapr/self-hosted/local
 ./run-client.ps1
 ```
 
-Otherwise, start the application using the dapr cli:
+Otherwise, start the application using the dapr CLI:
 
 ```bash
 cd ./services/client
@@ -255,6 +255,6 @@ dapr run `
 
 ## Output
 
-If everything was setup up correctly, you should see the following output of the notificationservice with an increasing counter. The output is the same for all deployment variants.
+If everything was setup up correctly, you should see the following output of the Notification Service with an increasing counter. The output is the same for all deployment variants.
 
 ![notification-service-output](./assets/notification-service-output.png)
