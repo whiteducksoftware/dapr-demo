@@ -5,10 +5,7 @@ on:
     branches: [master]
     paths:
       - 'services/client'
-
-defaults:
-  run:
-    working-directory: services/client
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -56,7 +53,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./services/client
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
