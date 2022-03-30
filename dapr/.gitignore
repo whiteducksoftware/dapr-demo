@@ -1,2 +1,6 @@
 # Ignore env files.
 dapr-demo-secrets-store.json
+
+# Ignore Kubernetes secrets.
+dapr-demo-pubsub-secrets.yaml
+dapr-demo-state-store-secrets.yaml
