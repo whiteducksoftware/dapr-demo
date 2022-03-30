@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - 'services/messageservice'
+  workflow_dispatch:
 
 defaults:
   run:

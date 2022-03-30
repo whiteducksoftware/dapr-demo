@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - 'services/client'
+  workflow_dispatch:
 
 defaults:
   run:

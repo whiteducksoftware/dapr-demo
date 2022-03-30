@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - 'services/notificationservice'
+  workflow_dispatch:
 
 defaults:
   run:
