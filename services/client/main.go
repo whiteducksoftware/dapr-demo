@@ -19,17 +19,17 @@ func main() {
 	}
 	defer client.Close()
 
-	fredDuck := &dapr.DataContent{
+	fredDuckleberry := &dapr.DataContent{
 		ContentType: "application/json",
-		Data:        []byte(`{ "Id": 1, "Name": "Fred Duck" }`),
+		Data:        []byte(`{ "Id": 1, "Name": "Fred Duckleberry" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", fredDuck)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", fredDuckleberry)
 
-	johnDoe := &dapr.DataContent{
+	fridaDuckleberry := &dapr.DataContent{
 		ContentType: "application/json",
-		Data:        []byte(`{ "Id": 2, "Name": "John Doe" }`),
+		Data:        []byte(`{ "Id": 2, "Name": "Frida Duckleberry" }`),
 	}
-	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", johnDoe)
+	client.InvokeMethodWithContent(ctx, "dapr-demo-message-service", "createuser", "post", fridaDuckleberry)
 
 	// keep sending messages for demo purposes
 	for i := 0; i < 500; i++ {
