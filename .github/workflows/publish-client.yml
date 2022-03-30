@@ -4,12 +4,12 @@ on:
   push:
     branches: [master]
     paths:
-      - 'services/client'
+      - './services/client'
   workflow_dispatch:
 
 defaults:
   run:
-    working-directory: services/client
+    working-directory: ./services/client
 
 env:
   REGISTRY: ghcr.io
