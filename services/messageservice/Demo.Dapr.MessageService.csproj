@@ -9,8 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapr.AspNetCore" Version="1.1.0" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.35.0" />
+    <PackageReference Include="Dapr.AspNetCore" Version="1.6.0" />
+    <PackageReference Include="Dapr.Client" Version="1.6.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.44.0" />
   </ItemGroup>
 
 </Project>
