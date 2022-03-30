@@ -7,10 +7,6 @@ on:
       - 'services/notificationservice'
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: services/notificationservice
-
 env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
@@ -57,7 +53,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./services/notificationservice
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
