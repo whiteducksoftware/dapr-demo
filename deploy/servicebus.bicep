@@ -48,4 +48,6 @@ resource authorizationRule 'Microsoft.ServiceBus/namespaces/AuthorizationRules@2
 //   }
 // }]
 
-output connectionString string = authorizationRule.listKeys().primaryConnectionString
+var tmp = authorizationRule.listKeys().primaryConnectionString
+
+output connectionString string = tmp

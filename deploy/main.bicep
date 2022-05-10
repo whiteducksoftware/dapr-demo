@@ -1,11 +1,12 @@
 param location string = resourceGroup().location
 param environmentName string = 'env-${uniqueString(resourceGroup().id)}'
-param minReplicas int = 1
+param cosmosDbLocation string = 'westus'
+// param minReplicas int = 1
 
 // notification service
 var notificationServiceName = 'notification-service'
 var notificationServiceImage = 'ghcr.io/whiteducksoftware/dapr-demo/notification-service:latest'
-var notificationServicePort = 5005
+// var notificationServicePort = 5005
 
 // param nodeImage string
 // param nodePort int = 3000
@@ -25,6 +26,23 @@ var notificationServicePort = 5005
 
 // Container Apps Environment 1
 
+// Cosmosdb
+module cosmosdb 'cosmosdb.bicep' = {
+  name: '${deployment().name}--cosmosdb'
+  params: {
+    location: cosmosDbLocation
+    databaseName: 'daprdb'
+  }
+}
+
+// ServiceBus
+module servicebus 'servicebus.bicep' = {
+  name: '${deployment().name}--servicebus'
+  params: {
+    location: location
+  }
+}
+
 module environment 'environment.bicep' = {
   name: '${deployment().name}--environment'
   params: {
@@ -36,23 +54,7 @@ module environment 'environment.bicep' = {
     database: cosmosdb.outputs.database
     masterKey: cosmosdb.outputs.masterKey
     url: cosmosdb.outputs.url
-  }
-}
-
-// Cosmosdb
-module cosmosdb 'cosmosdb.bicep' = {
-  name: '${deployment().name}--cosmosdb'
-  params: {
-    location: 'westus' // yes, this should be location but right now, Azure CosmosDB is not available everywhere..
-    databaseName: 'daprdb'
-  }
-}
-
-// ServiceBus
-module servicebus 'servicebus.bicep' = {
-  name: '${deployment().name}--servicebus'
-  params: {
-    location: location
+    connectionString: servicebus.outputs.connectionString
   }
 }
 
@@ -83,6 +85,44 @@ module messageservice 'apps/messageservice.bicep' = {
 //   }
 // }
 
+resource messageServiceTwo 'Microsoft.App/containerApps@2022-01-01-preview' = {
+  name: 'messageservicetwo'
+  location: location
+  properties: {
+    managedEnvironmentId: environment.outputs.environmentId
+    configuration: {
+      ingress: {
+        external: true
+        targetPort: 5002
+      }
+      dapr: {
+        enabled: true
+        appId: 'dapr-demo-message-service'
+        appProtocol: 'http'
+        appPort: 5002
+      }
+    }
+    template: {
+      containers: [
+        {
+          // image: 'ghcr.io/whiteducksoftware/dapr-demo/message-service:sha-e79be8e'
+          image: 'ghcr.io/whiteducksoftware/dapr-demo/notification-service:latest'
+
+          name: 'messageservicetwo'
+          resources: {
+            cpu: 1
+            memory: '2.0Gi'
+          }
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
+      }
+    }
+  }
+}
+
 resource notificationService 'Microsoft.App/containerApps@2022-01-01-preview' = {
   name: 'notificationservice'
   location: location
@@ -106,8 +146,8 @@ resource notificationService 'Microsoft.App/containerApps@2022-01-01-preview' = 
           image: notificationServiceImage
           name: notificationServiceName
           resources: {
-            cpu: '0.5'
-            memory: '1.0Gi'
+            cpu: 1
+            memory: '2.0Gi'
           }
         }
       ]

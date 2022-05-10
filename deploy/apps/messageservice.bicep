@@ -1,10 +1,18 @@
 param location string
 param environmentId string
 
+// basic settings
 var image = 'ghcr.io/whiteducksoftware/dapr-demo/message-service:latest'
 var name = 'dapr-demo-message-service'
+var port = 5002
 
-resource messageService 'Microsoft.App/containerApps@2022-01-01-preview' = {
+// environment settings
+var cpu = 1
+var memory = '2.0Gi'
+var minReplicas = 1
+var maxReplicas = 1
+
+resource messageservice 'Microsoft.App/containerApps@2022-01-01-preview' = {
   name: 'messageservice'
   location: location
   properties: {
@@ -12,13 +20,13 @@ resource messageService 'Microsoft.App/containerApps@2022-01-01-preview' = {
     configuration: {
       ingress: {
         external: true
-        targetPort: 5005
+        targetPort: port
       }
       dapr: {
         enabled: true
-        appId: 'dapr-demo-notification-service'
-        appProtocol: 'http'
-        appPort: 5005
+        appId: name
+        appProtocol: 'grpc'
+        appPort: port
       }
     }
     template: {
@@ -27,8 +35,8 @@ resource messageService 'Microsoft.App/containerApps@2022-01-01-preview' = {
           image: image
           name: name
           resources: {
-            cpu: '0.5'
-            memory: '1.0Gi'
+            cpu: cpu
+            memory: memory
           }
         }
       ]

@@ -9,6 +9,8 @@ param collection string
 param database string
 param url string
 
+param connectionString string
+
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-03-01-preview' = {
   name: logAnalyticsWorkspaceName
   location: location
@@ -47,8 +49,8 @@ resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
     }
   }
 
-  resource daprComponent 'daprComponents@2022-01-01-preview' = {
-    name: 'statestore'
+  resource daprStateComponent 'daprComponents@2022-01-01-preview' = {
+    name: 'dapr-demo-state-store'
     properties: {
       componentType: 'state.azure.cosmosdb'
       version: 'v1'
@@ -79,7 +81,33 @@ resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
         }
       ]
       scopes: [
-        'nodeapp'
+        'messageservice'
+      ]
+    }
+  }
+
+  resource daprPubSubComponent 'daprComponents@2022-01-01-preview' = {
+    name: 'dapr-demo-pubsub'
+    properties: {
+      componentType: 'pubsub.azure.servicebus'
+      version: 'v1'
+      ignoreErrors: false
+      initTimeout: '5s'
+      secrets: [
+        {
+          name: 'connectionstringsecret'
+          value: connectionString
+        }
+      ]
+      metadata: [
+        {
+          name: 'connectionString'
+          secretRef: 'connectionstringsecret'
+        }
+      ]
+      scopes: [
+        'messageservice'
+        'notificationservice'
       ]
     }
   }

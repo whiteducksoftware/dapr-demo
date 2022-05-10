@@ -4,6 +4,8 @@ az group create -n $rgName -l $location
 az deployment group create -g $rgName -f main.bicep 
 
 
+# az containerapp revision show -n 'messageservice' -g 'rg-community-build-conapp' --revision messageservice--cjp66ow
+
 # \
 #   -p \
 #     minReplicas=0 \
