@@ -5,7 +5,7 @@ This repository contains a simple demo that shows how [Dapr](https://dapr.io/) _
 The demo consists of three applications.
 
 - **Client**: Written in _Go_, uses dapr **service invocation** to talk to the MessageService over _GRPC_.
-- **MessageService**: Written in _C# .NET 5_, uses dapr **state management** to persist state and also uses the **publish & subscribe** building block to publish messages.
+- **MessageService**: Written in _C# .NET 6_, uses dapr **state management** to persist state and also uses the **publish & subscribe** building block to publish messages.
 - **NotificationService**: Written in _TypeScript / Node.js_, uses the **publish & subscribe** building block to subscribe on messages from the MessageService and outputs them on the console.
 
 ![architecture](./assets/architecture.png)
@@ -90,7 +90,7 @@ The Dapr components definitions for running the demo in self-hosted mode are loc
 
 To run the Dapr demo in self-hosted mode using cloud components, you will need the following prerequisites:
 
-- [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [.NET 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [Go](https://golang.org/)
 - [Node.js with NPM](https://nodejs.org/en/)
 - [Dapr](https://dapr.io/)
@@ -174,7 +174,7 @@ dapr run `
 
 To run the Dapr demo in self-hosted mode using local components, you need the following prerequisites:
 
-- [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [.NET 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [Go](https://golang.org/)
 - [Node.js with NPM](https://nodejs.org/en/)
 - [Dapr](https://dapr.io/)

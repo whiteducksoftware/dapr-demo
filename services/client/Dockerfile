@@ -1,5 +1,5 @@
 # Build
-FROM golang:1.16-buster as build-env
+FROM golang:1.18.1-buster as build-env
 WORKDIR /build
 COPY . .
 RUN go get -d -v

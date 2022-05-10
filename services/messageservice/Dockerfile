@@ -1,5 +1,5 @@
 # Build
-FROM mcr.microsoft.com/dotnet/sdk:5.0.102-1-buster-slim AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 ADD *.csproj .
 RUN dotnet restore
@@ -9,7 +9,7 @@ RUN dotnet publish \
   -o ./output
 
 # Run
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.2-buster-slim
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 # Connect the container image with the github repository
 LABEL org.opencontainers.image.source https://github.com/whiteducksoftware/dapr-demo
 RUN adduser \
