@@ -28,21 +28,21 @@ module environment 'environment.bicep' = {
   }
 }
 
-module client 'apps/client.bicep' = {
-  name: '${deployment().name}--client'
-  params: {
-    location: location
-    environmentId: environment.outputs.environmentId
-  }
-}
+// module client 'apps/client.bicep' = {
+//   name: '${deployment().name}--client'
+//   params: {
+//     location: location
+//     environmentId: environment.outputs.environmentId
+//   }
+// }
 
-module notificationservice 'apps/notificationservice.bicep' = {
-  name: '${deployment().name}--notificationservice'
-  params: {
-    location: location
-    environmentId: environment.outputs.environmentId
-  }
-}
+// module notificationservice 'apps/notificationservice.bicep' = {
+//   name: '${deployment().name}--notificationservice'
+//   params: {
+//     location: location
+//     environmentId: environment.outputs.environmentId
+//   }
+// }
 
 module messageservice 'apps/messageservice.bicep' = {
   name: '${deployment().name}--messageservice'
@@ -62,4 +62,4 @@ module messageservice 'apps/messageservice.bicep' = {
 // output database string = cosmosdb.outputs.database
 // output collection string = cosmosdb.outputs.collection
 
-// output connectionString string = servicebus.outputs.connectionString
+output connectionString string = servicebus.outputs.connectionString

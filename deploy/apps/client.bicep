@@ -2,8 +2,7 @@ param location string
 param environmentId string
 
 // basic settings
-// var image = 'ghcr.io/whiteducksoftware/dapr-demo/client:latest'
-var image = 'ghcr.io/whiteducksoftware/sample-mvc:fred'
+var image = 'ghcr.io/whiteducksoftware/dapr-demo/client:latest'
 var name = 'clientimage'
 
 resource client 'Microsoft.App/containerApps@2022-03-01' = {
@@ -12,12 +11,16 @@ resource client 'Microsoft.App/containerApps@2022-03-01' = {
   properties: {
     managedEnvironmentId: environmentId
     configuration: {
-      dapr: {
-        enabled: true
-        appId: name
-        // appProtocol: 'grpc'
-        // appPort: 50001
-      }
+      // ingress: {
+      //   external: false
+      //   targetPort: 50001
+      // }
+      // dapr: {
+      //   enabled: true
+      //   appId: name
+      //   appProtocol: 'grpc'
+      //   appPort: 50001
+      // }
     }
     template: {
       containers: [

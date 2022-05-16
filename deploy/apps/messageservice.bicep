@@ -2,9 +2,8 @@ param location string
 param environmentId string
 
 // basic settings
+var image = 'ghcr.io/whiteducksoftware/dapr-demo/message-service:sha-cdc5345'
 // var image = 'ghcr.io/whiteducksoftware/dapr-demo/message-service:latest'
-var image = 'ghcr.io/whiteducksoftware/sample-mvc:fred'
-
 var name = 'dapr-demo-message-service'
 
 resource messageservice 'Microsoft.App/containerApps@2022-03-01' = {
@@ -13,19 +12,14 @@ resource messageservice 'Microsoft.App/containerApps@2022-03-01' = {
   properties: {
     managedEnvironmentId: environmentId
     configuration: {
-      // ingress: {
-      //   external: true
-      //   targetPort: 3000
-      // }
+      ingress: {
+        external: false
+        targetPort: 5002
+      }
+
       // dapr: {
       //   enabled: true
-      //   appId: 'nodeapp'
-      //   appProtocol: 'grpc'
-      //   appPort: 3000
-      // }
-      // dapr: {
-      //   enabled: true
-      //   appId: 'daprdemomessageservice'
+      //   appId: name
       //   appProtocol: 'grpc'
       //   appPort: 5002
       // }
