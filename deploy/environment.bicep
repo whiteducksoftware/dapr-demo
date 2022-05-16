@@ -2,14 +2,11 @@ param environmentName string
 param logAnalyticsWorkspaceName string
 param appInsightsName string
 param location string
+param storageAccountName string
 
 @secure()
-param masterKey string
-param collection string
-param database string
-param url string
-
 param connectionString string
+param storageAccountKey string
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-03-01-preview' = {
   name: logAnalyticsWorkspaceName
@@ -35,7 +32,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
+resource environment 'Microsoft.App/managedEnvironments@2022-03-01' = {
   name: environmentName
   location: location
   properties: {
@@ -49,68 +46,64 @@ resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
     }
   }
 
-  resource daprStateComponent 'daprComponents@2022-01-01-preview' = {
-    name: 'dapr-demo-state-store'
-    properties: {
-      componentType: 'state.azure.cosmosdb'
-      version: 'v1'
-      ignoreErrors: false
-      initTimeout: '5s'
-      secrets: [
-        {
-          name: 'masterkeysecret'
-          value: masterKey
-        }
-      ]
-      metadata: [
-        {
-          name: 'url'
-          value: url
-        }
-        {
-          name: 'masterKey'
-          secretRef: 'masterkeysecret'
-        }
-        {
-          name: 'database'
-          value: database
-        }
-        {
-          name: 'collection'
-          value: collection
-        }
-      ]
-      scopes: [
-        'messageservice'
-      ]
-    }
-  }
+  // resource daprComponent 'daprComponents@2022-03-01' = {
+  //   name: 'dapr-demo-state-store'
+  //   properties: {
+  //     componentType: 'state.azure.blobstorage'
+  //     version: 'v1'
+  //     ignoreErrors: false
+  //     initTimeout: '5s'
+  //     secrets: [
+  //       {
+  //         name: 'storageaccountkey'
+  //         value: storageAccountKey
+  //       }
+  //     ]
+  //     metadata: [
+  //       {
+  //         name: 'accountName'
+  //         value: storageAccountName
+  //       }
+  //       {
+  //         name: 'containerName'
+  //         value: 'daprcontainer'
+  //       }
+  //       {
+  //         name: 'accountKey'
+  //         secretRef: 'storageaccountkey'
+  //       }
+  //     ]
+  //     scopes: [
+  //       'dapr-demo-message-service'
+  //     ]
+  //   }
+  // }
 
-  resource daprPubSubComponent 'daprComponents@2022-01-01-preview' = {
-    name: 'dapr-demo-pubsub'
-    properties: {
-      componentType: 'pubsub.azure.servicebus'
-      version: 'v1'
-      ignoreErrors: false
-      initTimeout: '5s'
-      secrets: [
-        {
-          name: 'connectionstringsecret'
-          value: connectionString
-        }
-      ]
-      metadata: [
-        {
-          name: 'connectionString'
-          secretRef: 'connectionstringsecret'
-        }
-      ]
-      scopes: [
-        'messageservice'
-        'notificationservice'
-      ]
-    }
-  }
+  // resource daprPubSubComponent 'daprComponents@2022-03-01' = {
+  //   name: 'dapr-demo-pubsub'
+  //   properties: {
+  //     componentType: 'pubsub.azure.servicebus'
+  //     version: 'v1'
+  //     ignoreErrors: false
+  //     initTimeout: '5s'
+  //     secrets: [
+  //       {
+  //         name: 'connectionstringsecret'
+  //         value: connectionString
+  //       }
+  //     ]
+  //     metadata: [
+  //       {
+  //         name: 'connectionString'
+  //         secretRef: 'connectionstringsecret'
+  //       }
+  //     ]
+  //     scopes: [
+  //       'dapr-demo-message-service'
+  //       'dapr-demo-notification-service'
+  //     ]
+  //   }
+  // }
 }
 
 output location string = location
