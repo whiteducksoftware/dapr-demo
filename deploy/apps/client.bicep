@@ -11,16 +11,16 @@ resource client 'Microsoft.App/containerApps@2022-03-01' = {
   properties: {
     managedEnvironmentId: environmentId
     configuration: {
-      // ingress: {
-      //   external: false
-      //   targetPort: 50001
-      // }
-      // dapr: {
-      //   enabled: true
-      //   appId: name
-      //   appProtocol: 'grpc'
-      //   appPort: 50001
-      // }
+      ingress: {
+        external: false
+        targetPort: 50001
+      }
+      dapr: {
+        enabled: true
+        appId: name
+        appProtocol: 'grpc'
+        appPort: 50001
+      }
     }
     template: {
       containers: [

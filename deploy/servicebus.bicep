@@ -2,13 +2,6 @@ param location string = resourceGroup().location
 param serviceBusNamespaceName string = 'myapp${uniqueString(resourceGroup().id)}'
 param skuName string = 'Basic'
 
-// param queueNames array = [
-//   'queue1'
-//   'queue2'
-// ]
-
-// var deadLetterFirehoseQueueName = 'deadletterfirehose'
-
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2018-01-01-preview' = {
   name: serviceBusNamespaceName
   location: location

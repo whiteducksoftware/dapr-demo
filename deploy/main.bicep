@@ -28,21 +28,21 @@ module environment 'environment.bicep' = {
   }
 }
 
-// module client 'apps/client.bicep' = {
-//   name: '${deployment().name}--client'
-//   params: {
-//     location: location
-//     environmentId: environment.outputs.environmentId
-//   }
-// }
+module client 'apps/client.bicep' = {
+  name: '${deployment().name}--client'
+  params: {
+    location: location
+    environmentId: environment.outputs.environmentId
+  }
+}
 
-// module notificationservice 'apps/notificationservice.bicep' = {
-//   name: '${deployment().name}--notificationservice'
-//   params: {
-//     location: location
-//     environmentId: environment.outputs.environmentId
-//   }
-// }
+module notificationservice 'apps/notificationservice.bicep' = {
+  name: '${deployment().name}--notificationservice'
+  params: {
+    location: location
+    environmentId: environment.outputs.environmentId
+  }
+}
 
 module messageservice 'apps/messageservice.bicep' = {
   name: '${deployment().name}--messageservice'
@@ -51,15 +51,3 @@ module messageservice 'apps/messageservice.bicep' = {
     environmentId: environment.outputs.environmentId
   }
 }
-
-// output nodeFqdn string = nodeService.outputs.fqdn
-// output pythonFqdn string = pythonService.outputs.fqdn
-// output goFqdn string = goService.outputs.fqdn
-// // output apimFqdn string = deployApim ? apim.outputs.fqdn : 'API Management not deployed'
-
-// output url string = cosmosdb.outputs.url
-// output masterKey string = cosmosdb.outputs.masterKey
-// output database string = cosmosdb.outputs.database
-// output collection string = cosmosdb.outputs.collection
-
-output connectionString string = servicebus.outputs.connectionString

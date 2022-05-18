@@ -46,64 +46,64 @@ resource environment 'Microsoft.App/managedEnvironments@2022-03-01' = {
     }
   }
 
-  // resource daprComponent 'daprComponents@2022-03-01' = {
-  //   name: 'dapr-demo-state-store'
-  //   properties: {
-  //     componentType: 'state.azure.blobstorage'
-  //     version: 'v1'
-  //     ignoreErrors: false
-  //     initTimeout: '5s'
-  //     secrets: [
-  //       {
-  //         name: 'storageaccountkey'
-  //         value: storageAccountKey
-  //       }
-  //     ]
-  //     metadata: [
-  //       {
-  //         name: 'accountName'
-  //         value: storageAccountName
-  //       }
-  //       {
-  //         name: 'containerName'
-  //         value: 'daprcontainer'
-  //       }
-  //       {
-  //         name: 'accountKey'
-  //         secretRef: 'storageaccountkey'
-  //       }
-  //     ]
-  //     scopes: [
-  //       'dapr-demo-message-service'
-  //     ]
-  //   }
-  // }
+  resource daprComponent 'daprComponents@2022-03-01' = {
+    name: 'dapr-demo-state-store'
+    properties: {
+      componentType: 'state.azure.blobstorage'
+      version: 'v1'
+      ignoreErrors: false
+      initTimeout: '5s'
+      secrets: [
+        {
+          name: 'storageaccountkey'
+          value: storageAccountKey
+        }
+      ]
+      metadata: [
+        {
+          name: 'accountName'
+          value: storageAccountName
+        }
+        {
+          name: 'containerName'
+          value: 'daprcontainer'
+        }
+        {
+          name: 'accountKey'
+          secretRef: 'storageaccountkey'
+        }
+      ]
+      scopes: [
+        'dapr-demo-message-service'
+      ]
+    }
+  }
 
-  // resource daprPubSubComponent 'daprComponents@2022-03-01' = {
-  //   name: 'dapr-demo-pubsub'
-  //   properties: {
-  //     componentType: 'pubsub.azure.servicebus'
-  //     version: 'v1'
-  //     ignoreErrors: false
-  //     initTimeout: '5s'
-  //     secrets: [
-  //       {
-  //         name: 'connectionstringsecret'
-  //         value: connectionString
-  //       }
-  //     ]
-  //     metadata: [
-  //       {
-  //         name: 'connectionString'
-  //         secretRef: 'connectionstringsecret'
-  //       }
-  //     ]
-  //     scopes: [
-  //       'dapr-demo-message-service'
-  //       'dapr-demo-notification-service'
-  //     ]
-  //   }
-  // }
+  resource daprPubSubComponent 'daprComponents@2022-03-01' = {
+    name: 'dapr-demo-pubsub'
+    properties: {
+      componentType: 'pubsub.azure.servicebus'
+      version: 'v1'
+      ignoreErrors: false
+      initTimeout: '5s'
+      secrets: [
+        {
+          name: 'connectionstringsecret'
+          value: connectionString
+        }
+      ]
+      metadata: [
+        {
+          name: 'connectionString'
+          secretRef: 'connectionstringsecret'
+        }
+      ]
+      scopes: [
+        'dapr-demo-message-service'
+        'dapr-demo-notification-service'
+      ]
+    }
+  }
 }
 
 output location string = location

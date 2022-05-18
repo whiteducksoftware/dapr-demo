@@ -1,8 +1,12 @@
+$stopwatch =  [system.diagnostics.stopwatch]::StartNew()
 $rgName = 'rg-community-build-conapp'
 $location = 'westeurope'
 az group create -n $rgName -l $location
 az deployment group create -g $rgName -f main.bicep 
 
+
+$stopwatch.Elapsed.ToString()
+$stopwatch.Stop()
 
 # az containerapp revision show -n 'messageservice' -g 'rg-community-build-conapp' --revision messageservice--cjp66ow
 
@@ -41,6 +45,6 @@ az deployment group create -g $rgName -f main.bicep
 #     }
 #     }
 
-## NO ingress, NO dapr => WORKING | NO ingress, NO dapr => NOT WORKING
+## NO ingress, NO dapr => WORKING | NO ingress, YES dapr => NOT WORKING
 ## NO ingress, NO dapr => WORKING | YES ingress, YES dapr => NOT WORKING (PROVISIONING failed)
 ## NO ingress, YES dapr => NOT WOKRING, No revision

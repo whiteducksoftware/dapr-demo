@@ -15,12 +15,12 @@ resource notificationservice 'Microsoft.App/containerApps@2022-03-01' = {
         external: false
         targetPort: 3000
       }
-      // dapr: {
-      //   enabled: true
-      //   appId: name
-      //   appProtocol: 'grpc'
-      //   appPort: 5005
-      // }
+      dapr: {
+        enabled: true
+        appId: name
+        appProtocol: 'grpc'
+        appPort: 5005
+      }
     }
     template: {
       containers: [
